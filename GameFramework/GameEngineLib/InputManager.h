@@ -16,6 +16,8 @@ private:
 public:
 	void Init(HWND hWnd);
 	void Update();
+	void Release() {};
+
 	bool IsKeyDown(int vKey);
 	bool IsKeyPressed(int vKey);
 	bool IsKeyReleased(int vKey);

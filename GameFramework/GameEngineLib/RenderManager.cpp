@@ -1,7 +1,6 @@
 #include "pch.h"
 #include "RenderManager.h"
 
-
 /// Renderer Initialize
 void RenderManager::Init(HWND hwnd, int width, int height) {
 	// 윈도우 핸들 초기화

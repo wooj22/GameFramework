@@ -20,12 +20,12 @@ private:
 
 public:
 	void Init(HWND hwnd, int width, int height);
-	void LoadImageFile(Bitmap*& bitmap, wchar_t* filePath);
+	void Update() {};
+	void Release();
 
+	void LoadImageFile(Bitmap*& bitmap, wchar_t* filePath);
 	void DrawBackground();
 	void DrawImage(Bitmap* bitmap, int posX, int posY);
 	void DrawBackToFront();
-
-	void Release();
 };
 
