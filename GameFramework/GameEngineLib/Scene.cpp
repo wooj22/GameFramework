@@ -5,23 +5,23 @@
 /// 씬에 등록된 모든 오브젝트 삭제
 void Scene::Clear()
 {
-	for (auto& object : objects)
+	for (auto& object : objectList)
 	{
 		delete object;
 	}
-	objects.clear();
+	objectList.clear();
 
-	for (auto& object : deletePendingObjects)
+	for (auto& object : deletePendingObjectList)
 	{
 		delete object;
 	}
-	deletePendingObjects.clear();
+	deletePendingObjectList.clear();
 }
 
 /// 씬에 등록된 모든 오브젝트 update 호출
 void Scene::Update()
 {
-	for (auto& object : objects)
+	for (auto& object : objectList)
 	{
 		object->Update();
 	}
@@ -30,7 +30,7 @@ void Scene::Update()
 /// 씬에 등록된 모든 오브젝트 render 호출
 void Scene::Render()
 {
-	for (auto& object : objects)
+	for (auto& object : objectList)
 	{
 		object->Render();
 	}

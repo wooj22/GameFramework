@@ -1,6 +1,6 @@
 #pragma once
-/*
-* [Object 추상 클래스]
+
+/* [Object 추상 클래스]
 * 씬 안에 들어갈 모든 오브젝트의 base 타입이다.
 * 각 Scene에 Object를 상속받은 다양한 클래스 객체들을 등록시키고,
 * Scene은 자신의 Scene에 등록된 Object들의 update를 호출시킨다.

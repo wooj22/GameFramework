@@ -1,7 +1,7 @@
 #pragma once
 #include <cassert>
-/*
-* [Singleton 클래스]
+
+/* [Singleton 클래스]
 * 싱글톤 코드를 재활용하여 상속만으로 각 클래스를 싱글톤으로 만들 수 있다.
 * - Class RenderManager : public Singleton<RenderManager> {};
 * - RenderManager를 만드는 순간 Singleton생성자에 의해 static RenderManager Instance가 생기므로 정적으로 활용할 수 있다.
