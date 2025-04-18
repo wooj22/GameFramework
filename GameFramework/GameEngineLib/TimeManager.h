@@ -4,14 +4,14 @@
 class TimeManager : public Singleton<TimeManager>
 {
 private:
-	TimeManager() = default;
-	~TimeManager() = default;
-
 	LARGE_INTEGER frequency;
 	LARGE_INTEGER prevCounter;
 	LARGE_INTEGER currentCounter;
 	LARGE_INTEGER initCounter;
 	float deltaTime;
+
+	TimeManager() {};
+	~TimeManager() {};
 
 public:
 	void Init();

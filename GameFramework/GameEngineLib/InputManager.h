@@ -5,13 +5,13 @@
 class InputManager : public Singleton<InputManager>
 {
 private:
-	InputManager() = default;
-	~InputManager() = default;
-
 	HWND m_hWnd;			// 윈도우 핸들
 	POINT m_mouseClient;	// 마우스 좌표
 	SHORT m_prevState[256] = { 0 };
 	SHORT m_currState[256] = { 0 };
+
+	InputManager() {};
+	~InputManager() {};
 
 public:
 	void Init(HWND hWnd);

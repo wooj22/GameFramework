@@ -2,9 +2,10 @@
 #include <Windows.h>
 #include "gdiplus.h"
 #pragma comment(lib, "gdiplus.lib")
+#include "Singleton.h"
 using namespace Gdiplus;
 
-class RenderManager
+class RenderManager : public Singleton<RenderManager>
 {
 private:
 	// Window Handle
@@ -19,6 +20,9 @@ private:
 	Graphics* backBufferGraphics;
 	HBITMAP backBufferBitmap;
 	ULONG_PTR gdiPlusToken;
+
+	RenderManager() {};
+	~RenderManager() override {};
 
 public:
 	void Init(HWND hwnd, int width, int height);
