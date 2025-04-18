@@ -20,10 +20,10 @@ private:
 
 public:
 	void Init(HWND hwnd, int width, int height);
-	void BitmapLoad(Bitmap*& bitmap, wchar_t* filePath);
+	void LoadImageFile(Bitmap*& bitmap, wchar_t* filePath);
 
-	void PaintingSquare();
-	void BitmapDraw(Bitmap* bitmap, int posX, int posY);
+	void DrawBackground();
+	void DrawImage(Bitmap* bitmap, int posX, int posY);
 	void DrawBackToFront();
 
 	void Release();

@@ -22,21 +22,21 @@ void RenderManager::Init(HWND hwnd, int width, int height) {
 }
 
 /// Load Image
-void RenderManager::BitmapLoad(Bitmap*& bitmap, wchar_t* filePath) {
+void RenderManager::LoadImageFile(Bitmap*& bitmap, wchar_t* filePath) {
 	bitmap = new Bitmap(filePath);
 }
 
-/// Square Paint (백그라운드용)
-void RenderManager::PaintingSquare() {
+/// Backgrond Draw
+void RenderManager::DrawBackground() {
 	PatBlt(backBufferDC, 0, 0, width, height, BLACKNESS);
 }
 
 /// Image Draw
-void RenderManager::BitmapDraw(Bitmap* bitmap, int posX, int posY) {
+void RenderManager::DrawImage(Bitmap* bitmap, int posX, int posY) {
 	backBufferGraphics->DrawImage(bitmap, posX, posY);
 }
 
-/// Front 출력
+/// Back -> Front copy
 void RenderManager::DrawBackToFront() {
 	BitBlt(frontBufferDC, 0, 0, width, height, backBufferDC, 0, 0, SRCCOPY);
 }
