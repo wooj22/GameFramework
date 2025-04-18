@@ -3,13 +3,13 @@
 #include "Scene.h"
 
 /// SceneManager 초기화
-void SceneManager::Startup()
+void SceneManager::Init()
 {
 
 }
 
 /// SceneManager 종료
-void SceneManager::Shutdown()
+void SceneManager::Release()
 {
 	for (auto& scene : sceneList)
 	{

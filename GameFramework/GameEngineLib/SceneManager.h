@@ -20,10 +20,10 @@ public:
 	SceneManager() = default;
 	~SceneManager() = default;
 
-	void Startup();
-	void Shutdown();
+	void Init();
 	void Update();
 	void Render();
+	void Release();
 
 	template<typename T>
 	void CreateScene()
