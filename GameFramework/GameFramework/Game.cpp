@@ -1,1 +1,5 @@
-#include "GameApp.h"
+
+
+int main() {
+	return 0;
+}

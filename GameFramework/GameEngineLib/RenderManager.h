@@ -1,6 +1,8 @@
 #pragma once
 #include <Windows.h>
-#include <gdiplus.h>
+#include "gdiplus.h"
+#pragma comment(lib, "gdiplus.lib")
+using namespace Gdiplus;
 
 class RenderManager
 {
