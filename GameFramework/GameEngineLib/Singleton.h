@@ -1,4 +1,5 @@
 #pragma once
+#include <cassert>
 /*
 * [싱글톤 코드 재활용]
 * 이 클래스를 상속받는 클래스는 본인 Class타입의 static 인스턴스를 만들어 싱글톤으로 활용할 수 있다.
