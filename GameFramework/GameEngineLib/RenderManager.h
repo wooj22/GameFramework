@@ -20,10 +20,10 @@ private:
 	HBITMAP backBufferBitmap;
 	ULONG_PTR gdiPlusToken;
 
+public:
 	RenderManager() = default;
 	~RenderManager() override = default;
 
-public:
 	void Init(HWND hwnd, int width, int height);
 	void Update() {};
 	void Release();

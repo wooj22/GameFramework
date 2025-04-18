@@ -10,10 +10,10 @@ private:
 	LARGE_INTEGER initCounter;
 	float deltaTime;
 
+public:
 	TimeManager() = default;
 	~TimeManager() override = default;
 
-public:
 	void Init();
 	void Update();
 	float GetDeltaTime();

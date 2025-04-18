@@ -16,10 +16,10 @@ private:
 	Scene* currentScene = nullptr;     // ÇöÀç ¾À
 	Scene* nextScene = nullptr;        // ´ÙÀ½ ¾À
 
+public:
 	SceneManager() = default;
 	~SceneManager() = default;
 
-public:
 	void Startup();
 	void Shutdown();
 	void Update();

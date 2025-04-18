@@ -12,10 +12,10 @@ private:
 	Channel* bgm_channel = nullptr;
 	Channel* sfx_channel = nullptr;
 
+public:
 	SoundManager() = default;
 	~SoundManager() override = default;
 
-public:
 	void Init();
 	void Release();
 
