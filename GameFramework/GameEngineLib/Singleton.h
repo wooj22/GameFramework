@@ -1,8 +1,8 @@
 #pragma once
 #include <cassert>
 /*
-* [싱글톤 코드 재활용]
-* 이 클래스를 상속받는 클래스는 본인 Class타입의 static 인스턴스를 만들어 싱글톤으로 활용할 수 있다.
+* [Singleton 클래스]
+* 싱글톤 코드를 재활용하여 상속만으로 각 클래스를 싱글톤으로 만들 수 있다.
 * - Class RenderManager : public Singleton<RenderManager> {};
 * - RenderManager를 만드는 순간 Singleton생성자에 의해 static RenderManager Instance가 생기므로 정적으로 활용할 수 있다.
 * - RenderManager::Get().DrawImage(bitmap, posX, posY);

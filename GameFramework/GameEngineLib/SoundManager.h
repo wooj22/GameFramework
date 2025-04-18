@@ -1,6 +1,5 @@
 #pragma once
 #include <fmod.hpp>
-#include <iostream>
 #include "Singleton.h"
 using namespace FMOD;
 
@@ -13,8 +12,8 @@ private:
 	Channel* bgm_channel = nullptr;
 	Channel* sfx_channel = nullptr;
 
-	SoundManager() {};
-	~SoundManager() override {};
+	SoundManager() = default;
+	~SoundManager() override = default;
 
 public:
 	void Init();

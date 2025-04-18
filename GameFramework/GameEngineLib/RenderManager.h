@@ -1,5 +1,4 @@
 #pragma once
-#include <Windows.h>
 #include "gdiplus.h"
 #pragma comment(lib, "gdiplus.lib")
 #include "Singleton.h"
@@ -21,8 +20,8 @@ private:
 	HBITMAP backBufferBitmap;
 	ULONG_PTR gdiPlusToken;
 
-	RenderManager() {};
-	~RenderManager() override {};
+	RenderManager() = default;
+	~RenderManager() override = default;
 
 public:
 	void Init(HWND hwnd, int width, int height);

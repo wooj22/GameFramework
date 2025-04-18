@@ -1,6 +1,5 @@
 #include "pch.h"
 #include "TimeManager.h"
-#include <Windows.h>
 
 void TimeManager::Init()
 {

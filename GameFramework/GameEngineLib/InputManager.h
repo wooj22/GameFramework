@@ -1,6 +1,5 @@
 #pragma once
 #include "Singleton.h"
-#include "Windows.h"
 
 class InputManager : public Singleton<InputManager>
 {
@@ -10,8 +9,8 @@ private:
 	SHORT m_prevState[256] = { 0 };
 	SHORT m_currState[256] = { 0 };
 
-	InputManager() {};
-	~InputManager() {};
+	InputManager() = default;
+	~InputManager() override = default;
 
 public:
 	void Init(HWND hWnd);
