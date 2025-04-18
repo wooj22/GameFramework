@@ -4,7 +4,7 @@
 // FMOD System Init
 void SoundManager::Init() 
 {
-	FMOD::System_Create(&this->system);
+	System_Create(&this->system);
 	system->init(512, FMOD_INIT_NORMAL, nullptr);
 }
 
@@ -38,7 +38,7 @@ void SoundManager::PlayBGM(const char* filePath)
 	}
 
 	// 새 file 받아서 play
-	system->createSound(filePath, FMOD_DEFAULT, nullptr, &bgm_sound);
+	system->createSound(filePath, FMOD_LOOP_NORMAL, nullptr, &bgm_sound);
 	system->playSound(bgm_sound, nullptr, false, &bgm_channel);
 }
 

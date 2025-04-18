@@ -13,7 +13,6 @@ void WinGameApp::Init()
 	// directory path save
 	GetCurrentDirectoryA(MAX_PATH, szPath);
 	workingPath = szPath;
-	
 	OutputDebugStringA(string(string(workingPath) + string("\n")).c_str());
 
 	// create window
@@ -99,7 +98,6 @@ void WinGameApp::Release()
 	soundManager.Release();
 	renderManager.Release();
 	sceneManager.Release();
-
 }
 
 /// 메시지 처리
@@ -111,12 +109,12 @@ void WinGameApp::MessageProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		PostQuitMessage(0);
 		break;
 	}
+
+	// 게임 콘텐츠에서 override
 }
 
 /// 윈도우 프로시저 메시지 콜백
-// 윈도우를 생성할때 설정한 클래스 인스턴스는 각각 다를수 있다.
-// 초기 WM_NCCREATE 에서 윈도우 핸들에 인스턴스 주로를 설정하고
-// 메세지를 받을때 마다 윈도우핸들에 설정된 주소로 MessageProc 를 호출한다.
+/// 메시지를 받을때 마다 윈도우핸들에 설정된 주소로 MessageProc호출
 LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
 	WinGameApp* pThis = nullptr;
