@@ -1,4 +1,5 @@
 #include "MenuScene.h"
+#include "GameManager.h"
 #include "../GameEngineLib/framework.h"
 
 /// Start
@@ -12,14 +13,14 @@ void MenuScene::Start() {
 void MenuScene::Update() {
 	__super::Update();
 
-	OutputDebugStringA("MenuScene Update\n");
+	if (InputManager::Get().IsKeyPressed(VK_SPACE))
+		SceneManager::Get().ChangeScene(GameManager::PLAY);
 }
 
 /// Render
 void MenuScene::Render() {
 	__super::Render();
 
-	OutputDebugStringA("MenuScene Render\n");
 }
 
 /// Exit

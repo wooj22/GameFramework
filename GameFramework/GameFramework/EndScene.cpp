@@ -1,4 +1,5 @@
 #include "EndScene.h"
+#include "GameManager.h"
 #include "../GameEngineLib/framework.h"
 
 /// Start
@@ -13,19 +14,18 @@ void EndScene::Start() {
 void EndScene::Update() {
 	__super::Update();
 
-	OutputDebugStringA("EndScene Update\n");
+	if (InputManager::Get().IsKeyPressed(VK_SPACE))
+		GameManager::Get().isLoop = false;
 }
 
 /// Render
 void EndScene::Render() {
 	__super::Render();
 
-	OutputDebugStringA("EndScene Render\n");
 }
 
 /// Exit
 void EndScene::Exit() {
 	__super::Exit();
 
-	OutputDebugStringA("EndScene Exit\n");
 }

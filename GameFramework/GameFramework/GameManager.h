@@ -6,6 +6,8 @@
 class GameManager : public WinGameApp
 {
 public:
+	enum sceneName { MENU, PLAY, END };
+
 	GameManager(int inputWidth = 1920, int inputHeight = 1080) : 
 		WinGameApp(inputWidth, inputHeight) {};
 	~GameManager() override = default;

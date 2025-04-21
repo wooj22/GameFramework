@@ -3,12 +3,6 @@
 #include "PlayScene.h"
 #include "EndScene.h"
 
-enum sceneName {
-	Menu,
-	Play,
-	End
-};
-
 /// Game Init
 void GameManager::Init() {
 	__super::Init();
@@ -17,9 +11,8 @@ void GameManager::Init() {
 	SceneManager::Get().CreateScene<MenuScene>();
 	SceneManager::Get().CreateScene<PlayScene>();
 	SceneManager::Get().CreateScene<EndScene>();
-	SceneManager::Get().SetCurrentScene(Menu);
-	SceneManager::Get().ChangeScene(Play);
-	SceneManager::Get().ChangeScene(End);
+	SceneManager::Get().SetCurrentScene(MENU);
+	SceneManager::Get().GetCurrentScene()->Start();
 }
 
 /// Game Release

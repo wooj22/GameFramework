@@ -143,7 +143,7 @@ void WinGameApp::Render()
 void WinGameApp::Run()
 {
 	MSG msg = {};
-	while (TRUE)
+	while (isLoop)
 	{
 		// message
 		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))

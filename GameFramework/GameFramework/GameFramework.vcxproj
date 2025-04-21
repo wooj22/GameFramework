@@ -149,7 +149,7 @@
   <ItemGroup>
     <ClCompile Include="EndScene.cpp" />
     <ClCompile Include="Enemy.cpp" />
-    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="MenuScene.cpp" />
     <ClCompile Include="Player.cpp" />

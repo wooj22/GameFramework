@@ -31,6 +31,8 @@ private:
 	void Render();
 
 public:
+	bool isLoop = true;
+
 	WinGameApp(int inputWidth = 1920, int inputHeight = 1080) :
 		width(inputWidth), height(inputHeight), hInstance(nullptr), hWnd(nullptr) {};
 	virtual ~WinGameApp() = default;

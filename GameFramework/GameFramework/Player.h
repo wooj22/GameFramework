@@ -41,7 +41,7 @@ private:
 	Bitmap* attackFrames[ATTACK_SIZE];
 
 public:
-	Player(SHORT posX, SHORT posY, int win_width, int win_Height) :
+	Player(SHORT posX = 1000, SHORT posY = 500, int win_width = 1920, int win_Height = 1080) :
 		pos{posX, posY}, winWidth(win_width), winHeight(win_Height) {};
 	~Player() override = default;
 
