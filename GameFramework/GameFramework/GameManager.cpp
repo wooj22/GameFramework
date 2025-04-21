@@ -1,4 +1,5 @@
 #include "GameManager.h"
+#include "PlayScene.h"
 
 /// Game Init
 void GameManager::Init() {

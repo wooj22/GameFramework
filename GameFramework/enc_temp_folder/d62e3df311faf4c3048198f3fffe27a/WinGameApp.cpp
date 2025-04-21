@@ -36,15 +36,9 @@ void WinGameApp::Init()
 		winClassName.c_str(),
 		titleName.c_str(),
 		WS_OVERLAPPEDWINDOW,
-		CW_USEDEFAULT, 
-		CW_USEDEFAULT,
-		clientRect.right - clientRect.left, 
-		clientRect.bottom - clientRect.top,
-		NULL,
-		NULL,
-		hInstance,
-		this  // 인스턴스 주소를 NCREATESTRUCT의 lpCreateParams에 저장
-	);
+		CW_USEDEFAULT, CW_USEDEFAULT,
+		clientRect.right - clientRect.left, clientRect.bottom - clientRect.top,
+		NULL, NULL, hInstance, this );
 
 	ShowWindow(hWnd, SW_SHOW);
 	UpdateWindow(hWnd);
