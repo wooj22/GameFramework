@@ -12,6 +12,6 @@ public:
 	void Init() override;
 	// update() : WinGameApp class에서 currentScene의 Objects update, render 호출중
 	void Release() override;
-	LRESULT MessageProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) override;
+	void MessageProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) override;
 };
 

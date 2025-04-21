@@ -31,7 +31,9 @@ public:
 		Scene* pScene = new T();
 		sceneList.push_back(pScene);
 	}
-	void ChangeScene(size_t index);
+
+	void SetCurrentScene(size_t index);
 	Scene* GetCurrentScene();
+	void ChangeScene(size_t index);
 };
 

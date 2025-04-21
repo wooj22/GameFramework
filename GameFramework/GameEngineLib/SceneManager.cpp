@@ -5,7 +5,8 @@
 /// SceneManager 초기화
 void SceneManager::Init()
 {
-
+	if (currentScene)
+		currentScene->Start();
 }
 
 /// SceneManager 종료
@@ -43,6 +44,19 @@ void SceneManager::Render()
 		currentScene->Render();
 }
 
+/// Current Scene Set
+void SceneManager::SetCurrentScene(size_t index) {
+	if (index >= sceneList.size())
+		return;
+
+	currentScene = sceneList[index];
+}
+
+/// Current Scene get
+Scene* SceneManager::GetCurrentScene() {
+	return currentScene;
+}
+
 /// Scene Change
 void SceneManager::ChangeScene(size_t index)
 {
@@ -52,7 +66,3 @@ void SceneManager::ChangeScene(size_t index)
 	nextScene = sceneList[index];
 }
 
-/// Current Scene get
-Scene* SceneManager::GetCurrentScene() {
-	return currentScene;
-}
