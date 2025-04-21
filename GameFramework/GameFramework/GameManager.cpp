@@ -3,8 +3,8 @@
 
 /// Game Init
 void GameManager::Init() {
+	
 	__super::Init();
-
 	// game scene µî·Ï
 }
 

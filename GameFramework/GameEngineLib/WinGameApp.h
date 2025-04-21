@@ -11,14 +11,14 @@ class WinGameApp : public Singleton<WinGameApp>
 {
 private:
 	// window
-	HINSTANCE		hInstance;
+	HINSTANCE		hInstance;		// 실행중인 프로그램 인스턴스 핸들
+	HWND			hWnd;			// 윈도우 핸들
 	int				width = 1024;
 	int				height = 768;
-	wstring			winClassName = L"WinGameAppClass";
-	wstring			titleName = L"Default Title Name";
+	wstring			winClassName = L"woo";
+	wstring			titleName = L"GDI+ Windows Project";
 	string			modulePath;
 	string			workingPath;
-	HWND			hWnd;
 
 	// managers
 	InputManager    inputManager;
@@ -31,7 +31,7 @@ private:
 	void Render();
 
 public:
-	WinGameApp() = default;
+	WinGameApp() : hInstance(nullptr), hWnd(nullptr) {};
 	virtual ~WinGameApp() = default;
 
 	virtual void Init();
