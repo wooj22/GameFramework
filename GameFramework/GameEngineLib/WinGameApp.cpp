@@ -54,7 +54,6 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 /// 메시지 처리
 void WinGameApp::MessageProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
-	OutputDebugStringA("\n메시지 처리");
 	switch (uMsg)
 	{
 	case WM_DESTROY:
@@ -85,12 +84,13 @@ void WinGameApp::Init()
 	// window class 정의
 	WNDCLASSEX wc = { 0 };
 	wc.cbSize = sizeof(WNDCLASSEX);
-	
+	wc.lpfnWndProc = WindowProc;
 	wc.style = CS_HREDRAW | CS_VREDRAW;
 	wc.hInstance = hInstance;
 	wc.lpszClassName = winClassName.c_str();
 	wc.hCursor = LoadCursor(NULL, IDC_ARROW);
 	wc.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
+	RegisterClassEx(&wc);
 
 	SIZE clientSize = { width, height };
 	RECT clientRect = { 0, 0, clientSize.cx, clientSize.cy };
