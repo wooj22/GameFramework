@@ -30,18 +30,21 @@ private:
 
 	// state
 	enum PlayerState { IDLE, WALK, ATTACK };
-	enum PlayerMoveState { LEFT, RIGHT,	UP,	DOWN, NONE };
+	enum PlayerWayState { LEFT, RIGHT,	UP,	DOWN, NONE };
 
 	PlayerState curState = IDLE;
 	PlayerState preState = IDLE;
-	PlayerMoveState curMoveState = NONE;
+	PlayerWayState playerWayState = NONE;
 
 	// animations
 	int animationIndex = 0;
 	Bitmap* idleFrames_R[IDLE_SIZE];
 	Bitmap* idleFrames_L[IDLE_SIZE];
-	Bitmap* walkFrames[WALK_SIZE];
-	Bitmap* attackFrames[ATTACK_SIZE];
+	Bitmap* walkFrames_R[WALK_SIZE];
+	Bitmap* walkFrames_L[WALK_SIZE];
+	Bitmap* attackFrames_L[ATTACK_SIZE];
+	Bitmap* attackFrames_R[ATTACK_SIZE];
+
 
 public:
 	Player() = default;

@@ -2,6 +2,7 @@
 
 void Player::Start() {
 	LoadImages();
+	//FilpImages();
 }
 
 void Player::Update() {
@@ -19,31 +20,46 @@ void Player::Render() {
 /* -------------------------------------------------------------------------- */
 /// Player animation frames load
 void Player::LoadImages() {
-	OutputDebugStringA("Player LoadImages\n");
 	wchar_t filePath[256];
 
-	// idle
+	// idle - L
 	for (int i = 0; i < IDLE_SIZE; ++i) {
 		swprintf_s(filePath, L"../Resource/PlayerAnimation/idle-%d.png", i + 1);
 		RenderManager::Get().LoadImageFile(idleFrames_R[i], filePath);
 	}
 
-	// walk
+	// walk - L
 	for (int i = 0; i < WALK_SIZE; ++i) {
 		swprintf_s(filePath, L"../Resource/PlayerAnimation/walk-%d.png", i + 1);
-		RenderManager::Get().LoadImageFile(walkFrames[i], filePath);
+		RenderManager::Get().LoadImageFile(walkFrames_R[i], filePath);
 	}
 
-	// attack
+	// attack - L
 	for (int i = 0; i < ATTACK_SIZE; ++i) {
 		swprintf_s(filePath, L"../Resource/PlayerAnimation/attack-A%d.png", i + 1);
-		RenderManager::Get().LoadImageFile(attackFrames[i], filePath);
+		RenderManager::Get().LoadImageFile(attackFrames_L[i], filePath);
 	}
 }
 
 /// Player Images Filp
 void Player::FilpImages() {
+	// idle - R
+	for (int i = 0; i < IDLE_SIZE; ++i) {
+		RenderManager::Get().CopyImage(idleFrames_L[i], idleFrames_R[i]);
+		RenderManager::Get().FilpImage(idleFrames_L[i]);
+	}
 
+	// walk - R
+	for (int i = 0; i < WALK_SIZE; ++i) {
+		RenderManager::Get().CopyImage(walkFrames_L[i], walkFrames_R[i]);
+		RenderManager::Get().FilpImage(walkFrames_L[i]);
+	}
+
+	// attack - R
+	for (int i = 0; i < ATTACK_SIZE; ++i) {
+		RenderManager::Get().CopyImage(attackFrames_L[i], attackFrames_R[i]);
+		RenderManager::Get().FilpImage(attackFrames_L[i]);
+	}
 }
 
 /// Update Timer
@@ -59,22 +75,22 @@ void Player::StateUpdate() {
 		if (InputManager::Get().IsKeyDown(VK_LEFT)) {
 			preState = curState;
 			curState = WALK;
-			curMoveState = LEFT;
+			playerWayState = LEFT;
 		}
 		if (InputManager::Get().IsKeyDown(VK_RIGHT)) {
 			preState = curState;
 			curState = WALK;
-			curMoveState = RIGHT;
+			playerWayState = RIGHT;
 		}
 		if (InputManager::Get().IsKeyDown(VK_UP)) {
 			preState = curState;
 			curState = WALK;
-			curMoveState = UP;
+			playerWayState = UP;
 		}
 		if (InputManager::Get().IsKeyDown(VK_DOWN)) {
 			preState = curState;
 			curState = WALK;
-			curMoveState = DOWN;
+			playerWayState = DOWN;
 		}
 	}
 	
@@ -82,7 +98,6 @@ void Player::StateUpdate() {
 	if (InputManager::Get().IsKeyDown(VK_SPACE)) {
 		preState = curState;
 		curState = ATTACK;
-		curMoveState = NONE;
 	}
 
 	// idle
@@ -94,7 +109,6 @@ void Player::StateUpdate() {
 		!InputManager::Get().IsKeyDown(VK_SPACE)) {
 		preState = curState;
 		curState = IDLE;
-		curMoveState = NONE;
 	}
 
 	// animation index
@@ -106,8 +120,8 @@ void Player::StateUpdate() {
 
 /// Player move
 void Player::Move() {
-	if (moveTimer > moveCycle) {
-		switch (curMoveState)
+	if (moveTimer > moveCycle && curState == WALK) {
+		switch (playerWayState)
 		{
 		case Player::LEFT:
 			this->pos.X -= speed;
@@ -142,12 +156,12 @@ void Player::Animation() {
 	case Player::WALK:
 		if (preState != curState) animationIndex = 0;
 		if (animationIndex > WALK_SIZE - 1) animationIndex = 0;
-		RenderManager::Get().DrawImage(walkFrames[animationIndex], pos.X, pos.Y);
+		RenderManager::Get().DrawImage(walkFrames_R[animationIndex], pos.X, pos.Y);
 		break;
 
 	case Player::ATTACK:
 		if (preState != curState) animationIndex = 0;
-		RenderManager::Get().DrawImage(attackFrames[animationIndex], pos.X, pos.Y);
+		RenderManager::Get().DrawImage(attackFrames_L[animationIndex], pos.X, pos.Y);
 		if (animationIndex == ATTACK_SIZE - 1) curState = IDLE;
 		break;
 

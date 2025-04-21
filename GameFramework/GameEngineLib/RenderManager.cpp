@@ -36,7 +36,7 @@ void RenderManager::CopyImage(Bitmap*& bitmapCopy, Bitmap* bitmapOrigin) {
 
 /// Filp Image
 void RenderManager::FilpImage(Bitmap*& bitmap) {
-	bitmap->RotateFlip(RotateNoneFlipX);
+	if(bitmap)	bitmap->RotateFlip(RotateNoneFlipX);
 }
 
 /// Backgrond Draw
