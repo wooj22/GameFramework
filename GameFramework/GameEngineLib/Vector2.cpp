@@ -29,6 +29,22 @@ Vector2 Vector2::operator* (float n) {
 	return result;
 }
 
+
+void Vector2::operator+= (const Vector2& vector2) {
+	this->x += vector2.x;
+	this->y += vector2.y;
+}
+
+void Vector2::operator-= (const Vector2& vector2) {
+	this->x -= vector2.x;
+	this->y -= vector2.y;
+}
+
+void Vector2::operator*= (float n) {
+	this->x *= n;
+	this->y *= n;
+}
+
 // 자신을 방향 벡터로 변환
 void Vector2::Normalize() {
 	float dist = sqrt(this->x * this->x + this->y * this->y);

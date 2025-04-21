@@ -12,8 +12,11 @@ public:
 	Vector2 operator- (const Vector2& vector2);
 	Vector2 operator* (float n);
 
+	void operator+= (const Vector2& vector2);
+	void operator-= (const Vector2& vector2);
+	void operator*= (float n);
+
 	// member function
-	void Show() { cout << "x : " << x << ", y : " << y << endl; }
 	void Normalize();
 	float Length();
 	float LengthSquared();

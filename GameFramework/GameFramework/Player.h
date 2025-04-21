@@ -1,5 +1,6 @@
 #pragma once
 #include "../GameEngineLib/Object.h"
+#include "../GameEngineLib/Vector2.h"
 #include "../GameEngineLib/framework.h"
 #include "GameManager.h"
 
@@ -11,7 +12,7 @@ const int ATTACK_SIZE = 8;
 class Player :public Object {
 private:
 	// transform
-	COORD pos = {1000,500};
+	Vector2 position;
 	int width = 30;
 	int height = 50;
 	int winWidth = 1920;
@@ -59,6 +60,6 @@ public:
 	void UpdateTimer();
 	void StateUpdate();
 	void Move();
-	bool isCollision(COORD pos, int width, int height);
+	bool isCollision(Vector2 pos, int width, int height);
 	void Animation();
 };

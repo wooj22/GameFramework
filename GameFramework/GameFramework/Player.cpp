@@ -124,16 +124,16 @@ void Player::Move() {
 		switch (playerWayState)
 		{
 		case Player::LEFT:
-			this->pos.X -= speed;
+			this->position.x -= speed;
 			break;
 		case Player::RIGHT:
-			this->pos.X += speed;
+			this->position.x += speed;
 			break;
 		case Player::UP:
-			this->pos.Y -= speed;
+			this->position.y -= speed;
 			break;
 		case Player::DOWN:
-			this->pos.Y += speed;
+			this->position.y += speed;
 			break;
 		default:
 			break;
@@ -150,18 +150,18 @@ void Player::Animation() {
 	case Player::IDLE:
 		if (preState != curState) animationIndex = 0;
 		if (animationIndex > IDLE_SIZE - 1) animationIndex = 0;
-		RenderManager::Get().DrawImage(idleFrames_R[animationIndex], pos.X, pos.Y);
+		RenderManager::Get().DrawImage(idleFrames_R[animationIndex], position.x, position.y);
 		break;
 
 	case Player::WALK:
 		if (preState != curState) animationIndex = 0;
 		if (animationIndex > WALK_SIZE - 1) animationIndex = 0;
-		RenderManager::Get().DrawImage(walkFrames_R[animationIndex], pos.X, pos.Y);
+		RenderManager::Get().DrawImage(walkFrames_R[animationIndex], position.x, position.y);
 		break;
 
 	case Player::ATTACK:
 		if (preState != curState) animationIndex = 0;
-		RenderManager::Get().DrawImage(attackFrames_L[animationIndex], pos.X, pos.Y);
+		RenderManager::Get().DrawImage(attackFrames_L[animationIndex], position.x, position.y);
 		if (animationIndex == ATTACK_SIZE - 1) curState = IDLE;
 		break;
 
@@ -171,6 +171,6 @@ void Player::Animation() {
 }
 
 /// AABB Collision
-bool Player::isCollision(COORD pos, int width, int height) {
+bool Player::isCollision(Vector2 pos, int width, int height) {
 	return false;
 }
