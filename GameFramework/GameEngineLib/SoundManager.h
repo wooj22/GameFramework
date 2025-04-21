@@ -1,4 +1,5 @@
 #pragma once
+#pragma comment(lib, "fmod_vc.lib")
 #include <fmod.hpp>
 #include "Singleton.h"
 using namespace FMOD;

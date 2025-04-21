@@ -6,7 +6,7 @@ void WinGameApp::Init()
 {
 	// module path save
 	char szPath[MAX_PATH] = { 0, };
-	GetModuleFileNameA(NULL, szPath, MAX_PATH); // 현재 모듈의 경로
+	GetModuleFileNameA(NULL, szPath, MAX_PATH);
 	modulePath = szPath;
 	OutputDebugStringA(string(string(modulePath) + string("\n")).c_str());
 
