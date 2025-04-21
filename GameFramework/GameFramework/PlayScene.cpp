@@ -4,11 +4,10 @@
 
 /// Start
 void PlayScene::Start() {
-	__super::Start();
-
 	OutputDebugStringA("PlayScene Start\n");
 	Player* player = (Player*)CreateObject<Player>();
-	
+
+	__super::Start();
 }
 
 // 과제용 임시변수
@@ -28,7 +27,6 @@ void PlayScene::Update() {
 /// Render
 void PlayScene::Render() {
 	__super::Render();
-
 }
 
 /// Exit

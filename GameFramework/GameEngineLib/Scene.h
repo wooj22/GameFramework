@@ -29,7 +29,7 @@ public:
 	}
 
 	void Clear();
-	virtual void Start() {};
+	virtual void Start();
 	virtual void Update();
 	virtual void Render();
 	virtual void Exit() { Clear(); }

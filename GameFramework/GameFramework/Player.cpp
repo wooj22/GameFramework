@@ -5,6 +5,7 @@ void Player::Start() {
 }
 
 void Player::Update() {
+	
 	UpdateTimer();
 	StateUpdate();
 	Move();
@@ -18,6 +19,7 @@ void Player::Render() {
 /* -------------------------------------------------------------------------- */
 /// Player animation frames load
 void Player::LoadImages() {
+	OutputDebugStringA("Player LoadImages\n");
 	wchar_t filePath[256];
 
 	// idle
@@ -47,42 +49,53 @@ void Player::UpdateTimer() {
 
 /// Player state update (input)
 void Player::StateUpdate() {
-	// walk
-	if (InputManager::Get().IsKeyDown(VK_LEFT)) {
-		preState = curState;
-		curState = WALK;
-		curMoveState = LEFT;
+	// walk 
+	if (curState != ATTACK) {
+		if (InputManager::Get().IsKeyDown(VK_LEFT)) {
+			preState = curState;
+			curState = WALK;
+			curMoveState = LEFT;
+		}
+		if (InputManager::Get().IsKeyDown(VK_RIGHT)) {
+			preState = curState;
+			curState = WALK;
+			curMoveState = RIGHT;
+		}
+		if (InputManager::Get().IsKeyDown(VK_UP)) {
+			preState = curState;
+			curState = WALK;
+			curMoveState = UP;
+		}
+		if (InputManager::Get().IsKeyDown(VK_DOWN)) {
+			preState = curState;
+			curState = WALK;
+			curMoveState = DOWN;
+		}
 	}
-	if(InputManager::Get().IsKeyDown(VK_RIGHT)) {
-		preState = curState;
-		curState = WALK;
-		curMoveState = RIGHT;
-	}
-	if (InputManager::Get().IsKeyDown(VK_UP)) {
-		preState = curState;
-		curState = WALK;
-		curMoveState = UP;
-	}
-	if (InputManager::Get().IsKeyDown(VK_DOWN)) {
-		preState = curState;
-		curState = WALK;
-		curMoveState = DOWN;
-	}
-
+	
 	// attack
 	if (InputManager::Get().IsKeyDown(VK_SPACE)) {
 		preState = curState;
-		curState = WALK;
+		curState = ATTACK;
+		curMoveState = NONE;
 	}
 
 	// idle
-	if (!InputManager::Get().IsKeyDown(VK_LEFT) &&
+	if (curState != ATTACK &&
+		!InputManager::Get().IsKeyDown(VK_LEFT) &&
 		!InputManager::Get().IsKeyDown(VK_RIGHT) &&
 		!InputManager::Get().IsKeyDown(VK_UP)&&
 		!InputManager::Get().IsKeyDown(VK_DOWN)&&
 		!InputManager::Get().IsKeyDown(VK_SPACE)) {
 		preState = curState;
-		curState = ATTACK;
+		curState = IDLE;
+		curMoveState = NONE;
+	}
+
+	// animation index
+	if (animationTimer > animationCycle) {
+		animationIndex++;
+		animationTimer = 0;
 	}
 }
 
@@ -92,16 +105,16 @@ void Player::Move() {
 		switch (curMoveState)
 		{
 		case Player::LEFT:
-			this->pos.X--;
+			this->pos.X -= speed;
 			break;
 		case Player::RIGHT:
-			this->pos.X++;
+			this->pos.X += speed;
 			break;
 		case Player::UP:
-			this->pos.Y--;
+			this->pos.Y -= speed;
 			break;
 		case Player::DOWN:
-			this->pos.Y++;
+			this->pos.Y += speed;
 			break;
 		default:
 			break;
@@ -113,42 +126,28 @@ void Player::Move() {
 
 /// Animation frame change
 void Player::Animation() {
-	if (animationTimer > animationCycle) {
-		switch (curState)
-		{
-		case Player::IDLE:
-			if (animationIndex > IDLE_SIZE - 1) animationIndex = 0;
-			if(preState != curState) animationIndex = 0;
+	switch (curState)
+	{
+	case Player::IDLE:
+		if (preState != curState) animationIndex = 0;
+		if (animationIndex > IDLE_SIZE - 1) animationIndex = 0;
+		RenderManager::Get().DrawImage(idleFrames[animationIndex], pos.X, pos.Y);
+		break;
 
-			RenderManager::Get().DrawImage(idleFrames[animationIndex], 
-				pos.X - (int)idleFrames[animationIndex]->GetWidth()/2,
-				pos.Y - (int)idleFrames[animationIndex]->GetHeight() / 2);
+	case Player::WALK:
+		if (preState != curState) animationIndex = 0;
+		if (animationIndex > WALK_SIZE - 1) animationIndex = 0;
+		RenderManager::Get().DrawImage(walkFrames[animationIndex], pos.X, pos.Y);
+		break;
 
-			break;
-		case Player::WALK:
-			if (animationIndex > WALK_SIZE - 1) animationIndex = 0;
-			if (preState != curState) animationIndex = 0;
+	case Player::ATTACK:
+		if (preState != curState) animationIndex = 0;
+		RenderManager::Get().DrawImage(attackFrames[animationIndex], pos.X, pos.Y);
+		if (animationIndex == ATTACK_SIZE - 1) curState = IDLE;
+		break;
 
-			RenderManager::Get().DrawImage(walkFrames[animationIndex],
-				pos.X - (int)walkFrames[animationIndex]->GetWidth() / 2,
-				pos.Y - (int)walkFrames[animationIndex]->GetHeight() / 2);
-
-			break;
-		case Player::ATTACK:
-			if (animationIndex > ATTACK_SIZE - 1) animationIndex = 0;
-			if (preState != curState) animationIndex = 0;
-
-			RenderManager::Get().DrawImage(attackFrames[animationIndex],
-				pos.X - (int)attackFrames[animationIndex]->GetWidth() / 2,
-				pos.Y - (int)attackFrames[animationIndex]->GetHeight() / 2);
-
-			break;
-		default:
-			break;
-		}
-
-		animationIndex++;
-		animationTimer = 0;
+	default:
+		break;
 	}
 }
 

@@ -4,10 +4,9 @@
 
 /// Start
 void EndScene::Start() {
-	__super::Start();
-
 	OutputDebugStringA("EndScene Start\n");
 
+	__super::Start();
 }
 
 /// Update

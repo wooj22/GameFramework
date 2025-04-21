@@ -4,9 +4,9 @@
 
 /// Start
 void MenuScene::Start() {
-	__super::Start();
-
 	OutputDebugStringA("MenuScene Start\n");
+
+	__super::Start();
 }
 
 /// Update

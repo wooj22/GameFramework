@@ -14,6 +14,7 @@ class Object	// 추상 클래스
 public:
 	Object() = default;
 	virtual ~Object() = default;      // 순수 가상 소멸자
+	virtual void Start() = 0; // 순수 가상 함수
 	virtual void Update() = 0;	// 순수 가상 함수
 	virtual void Render() = 0;	// 순수 가상 함수
 };

@@ -18,6 +18,14 @@ void Scene::Clear()
 	deletePendingObjectList.clear();
 }
 
+/// 씬에 등록된 모든 오브젝트 start 호출
+void Scene::Start() {
+	for (auto& object : objectList)
+	{
+		object->Start();
+	}
+}
+
 /// 씬에 등록된 모든 오브젝트 update 호출
 void Scene::Update()
 {
