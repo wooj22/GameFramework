@@ -5,8 +5,7 @@ void Player::Start() {
 }
 
 void Player::Update() {
-	moveTimer += TimeManager::Get().GetDeltaTime();
-	animationTimer += TimeManager::Get().GetDeltaTime();
+	UpdateTimer();
 	StateUpdate();
 	Move();
 }
@@ -38,6 +37,12 @@ void Player::LoadImages() {
 		swprintf_s(filePath, L"../Resource/PlayerAnimation/attack-A%d.png", i + 1);
 		RenderManager::Get().LoadImageFile(attackFrames[i], filePath);
 	}
+}
+
+/// Update Timer
+void Player::UpdateTimer() {
+	moveTimer += TimeManager::Get().GetDeltaTime();
+	animationTimer += TimeManager::Get().GetDeltaTime();
 }
 
 /// Player state update (input)

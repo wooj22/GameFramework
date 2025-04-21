@@ -1,4 +1,5 @@
 #include "PlayScene.h"
+#include "Player.h"
 #include "../GameEngineLib/framework.h"
 
 /// Start
@@ -6,7 +7,6 @@ void PlayScene::Start() {
 	__super::Start();
 
 	OutputDebugStringA("PlayScene Start\n");
-
 }
 
 /// Update

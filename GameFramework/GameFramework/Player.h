@@ -41,8 +41,8 @@ private:
 	Bitmap* attackFrames[ATTACK_SIZE];
 
 public:
-	Player(COORD inputPos, int win_width, int win_Height) : 
-		pos(inputPos), winWidth(win_width), winHeight(win_Height) {};
+	Player(SHORT posX, SHORT posY, int win_width, int win_Height) :
+		pos{posX, posY}, winWidth(win_width), winHeight(win_Height) {};
 	~Player() override = default;
 
 	void Start();
@@ -50,6 +50,7 @@ public:
 	void Render() override;	 // scene manager called	
 
 	void LoadImages();
+	void UpdateTimer();
 	void StateUpdate();
 	void Move();
 	bool isCollision(COORD pos, int width, int height);

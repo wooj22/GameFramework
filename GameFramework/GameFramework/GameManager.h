@@ -6,7 +6,8 @@
 class GameManager : public WinGameApp
 {
 public:
-	GameManager() = default;
+	GameManager(int inputWidth = 1920, int inputHeight = 1080) : 
+		WinGameApp(inputWidth, inputHeight) {};
 	~GameManager() override = default;
 
 	void Init() override;
