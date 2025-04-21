@@ -38,7 +38,8 @@ private:
 
 	// animations
 	int animationIndex = 0;
-	Bitmap* idleFrames[IDLE_SIZE];
+	Bitmap* idleFrames_R[IDLE_SIZE];
+	Bitmap* idleFrames_L[IDLE_SIZE];
 	Bitmap* walkFrames[WALK_SIZE];
 	Bitmap* attackFrames[ATTACK_SIZE];
 
@@ -51,6 +52,7 @@ public:
 	void Render() override;	 // scene manager called	
 
 	void LoadImages();
+	void FilpImages();
 	void UpdateTimer();
 	void StateUpdate();
 	void Move();

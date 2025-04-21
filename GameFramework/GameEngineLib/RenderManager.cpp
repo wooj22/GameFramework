@@ -25,6 +25,20 @@ void RenderManager::LoadImageFile(Bitmap*& bitmap, wchar_t* filePath) {
 	bitmap = new Bitmap(filePath);
 }
 
+/// Copy Image
+void RenderManager::CopyImage(Bitmap*& bitmapCopy, Bitmap* bitmapOrigin) {
+	bitmapCopy = bitmapOrigin->Clone(0, 0,
+		bitmapOrigin->GetWidth(),
+		bitmapOrigin->GetHeight(),
+		bitmapOrigin->GetPixelFormat()
+	);
+}
+
+/// Filp Image
+void RenderManager::FilpImage(Bitmap*& bitmap) {
+	bitmap->RotateFlip(RotateNoneFlipX);
+}
+
 /// Backgrond Draw
 void RenderManager::DrawBackground() {
 	PatBlt(backBufferDC, 0, 0, width, height, BLACKNESS);

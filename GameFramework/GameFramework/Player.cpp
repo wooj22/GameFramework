@@ -25,7 +25,7 @@ void Player::LoadImages() {
 	// idle
 	for (int i = 0; i < IDLE_SIZE; ++i) {
 		swprintf_s(filePath, L"../Resource/PlayerAnimation/idle-%d.png", i + 1);
-		RenderManager::Get().LoadImageFile(idleFrames[i], filePath);
+		RenderManager::Get().LoadImageFile(idleFrames_R[i], filePath);
 	}
 
 	// walk
@@ -41,6 +41,11 @@ void Player::LoadImages() {
 	}
 }
 
+/// Player Images Filp
+void Player::FilpImages() {
+
+}
+
 /// Update Timer
 void Player::UpdateTimer() {
 	moveTimer += TimeManager::Get().GetDeltaTime();
@@ -49,7 +54,7 @@ void Player::UpdateTimer() {
 
 /// Player state update (input)
 void Player::StateUpdate() {
-	// walk 
+	// walk (°øÄµ¹æÁö)
 	if (curState != ATTACK) {
 		if (InputManager::Get().IsKeyDown(VK_LEFT)) {
 			preState = curState;
@@ -131,7 +136,7 @@ void Player::Animation() {
 	case Player::IDLE:
 		if (preState != curState) animationIndex = 0;
 		if (animationIndex > IDLE_SIZE - 1) animationIndex = 0;
-		RenderManager::Get().DrawImage(idleFrames[animationIndex], pos.X, pos.Y);
+		RenderManager::Get().DrawImage(idleFrames_R[animationIndex], pos.X, pos.Y);
 		break;
 
 	case Player::WALK:
