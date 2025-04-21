@@ -7,10 +7,7 @@ void PlayScene::Start() {
 	__super::Start();
 
 	OutputDebugStringA("PlayScene Start\n");
-
-	// 플레이어 만들고 맵 사이즈 전달하기
-	// 윈게임앱에 Get, Set 만들고 그거 아래 넣기
-	//Player* player = (Player*)CreateObject<Player>();
+	Player* player = (Player*)CreateObject<Player>();
 	
 }
 

@@ -13,10 +13,10 @@ class Player :public Object {
 private:
 	// transform
 	COORD pos = {0,0};
-	int width;
-	int height;
-	int winWidth;
-	int winHeight;
+	int width = 30;
+	int height = 50;
+	int winWidth = 1920;
+	int winHeight = 1080;
 
 	// stat
 	float moveCycle = 0.2f;
@@ -41,8 +41,7 @@ private:
 	Bitmap* attackFrames[ATTACK_SIZE];
 
 public:
-	Player(SHORT posX = 1000, SHORT posY = 500, int win_width = 1920, int win_Height = 1080) :
-		pos{posX, posY}, winWidth(win_width), winHeight(win_Height) {};
+	Player() = default;
 	~Player() override = default;
 
 	void Start();
