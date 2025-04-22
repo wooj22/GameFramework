@@ -114,7 +114,7 @@ void Player::StateUpdate() {
 	}
 	
 	// attack
-	if (InputManager::Get().IsKeyDown(VK_SPACE)) {
+	if (InputManager::Get().IsKeyDown('F')) {
 		preState = curState;
 		curState = ATTACK;
 	}
@@ -216,7 +216,22 @@ void Player::Animation() {
 }
 
 /// AABB Collision
-bool Player::isCollision(Vector2 pos, float width, float height) {
-	// TODO
-	return false;
+bool Player::isAABBCollision(Vector2 e_pos, float eh_width, float eh_height) {
+	// 플레이어의 중심 좌표와 반너비/반높이
+	float p_minX = position.x - h_width;
+	float p_maxX = position.x + h_width;
+	float p_minY = position.y - h_height;
+	float p_maxY = position.y + h_height;
+
+	// 외부 객체의 좌표
+	float e_minX = e_pos.x - eh_width;
+	float e_maxX = e_pos.x + eh_width;
+	float e_minY = e_pos.y - eh_height;
+	float e_maxY = e_pos.y + eh_height;
+
+	// AABB 충돌 검사
+	if (p_maxX < e_minX || p_minX > e_maxX || p_maxY < e_minY || p_minY > e_maxY)
+		return false;
+	else
+		return true;
 }

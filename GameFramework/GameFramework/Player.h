@@ -25,8 +25,8 @@ private:
 	int attackEnemyCount = 0;
 
 	// window
-	int winWidth = 1920;
-	int winHeight = 1080;
+	int w_width = 1920;
+	int w_height = 1080;
 
 	// state
 	enum PlayerState { IDLE, WALK, ATTACK };
@@ -68,6 +68,6 @@ public:
 	void Move();
 	void Animation();
 
-	bool isCollision(Vector2 pos, float width, float height);
+	bool isAABBCollision(Vector2 pos, float h_width, float h_height);
 	int GetAttackEnemyCount() { return attackEnemyCount; }
 };
