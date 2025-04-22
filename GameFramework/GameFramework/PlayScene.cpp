@@ -11,7 +11,7 @@ void PlayScene::Start() {
 }
 
 // 과제용 임시변수
-float sceneChangeTime = 10.0f;
+float sceneChangeTime = 30.0f;
 float sceneChangeTimer = 0.0f;
 
 /// Update

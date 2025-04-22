@@ -29,7 +29,7 @@ public:
 	void Release();
 
 	void LoadImageFile(Bitmap*& bitmap, wchar_t* filePath);
-	void CopyImage(Bitmap*& bitmap1, Bitmap* bitmap2);
+	void CopyImage(Bitmap*& bitmapCopy, Bitmap*& bitmapOrigin);
 	void FilpImage(Bitmap*& bitmap);
 	void DrawBackground();
 	void DrawImage(Bitmap* bitmap, int posX, int posY);

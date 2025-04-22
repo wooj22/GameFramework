@@ -13,13 +13,13 @@ class Player :public Object {
 private:
 	// transform
 	Vector2 position;
-	int width = 30;
-	int height = 50;
+	int width = 50;
+	int height = 80;
 	int winWidth = 1920;
 	int winHeight = 1080;
 
 	// stat
-	int speed = 10;
+	float speed = 10;
 
 	// cycle
 	float moveCycle = 0.1f;

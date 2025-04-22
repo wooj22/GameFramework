@@ -2,7 +2,7 @@
 
 void Player::Start() {
 	LoadImages();
-	//FilpImages();
+	FilpImages();
 }
 
 void Player::Update() {
@@ -18,7 +18,7 @@ void Player::Render() {
 
 
 /* -------------------------------------------------------------------------- */
-/// Player animation frames load
+/// Player animation images load
 void Player::LoadImages() {
 	wchar_t filePath[256];
 
@@ -37,11 +37,11 @@ void Player::LoadImages() {
 	// attack - L
 	for (int i = 0; i < ATTACK_SIZE; ++i) {
 		swprintf_s(filePath, L"../Resource/PlayerAnimation/attack-A%d.png", i + 1);
-		RenderManager::Get().LoadImageFile(attackFrames_L[i], filePath);
+		RenderManager::Get().LoadImageFile(attackFrames_R[i], filePath);
 	}
 }
 
-/// Player Images Filp
+/// Player images filp save
 void Player::FilpImages() {
 	// idle - R
 	for (int i = 0; i < IDLE_SIZE; ++i) {
@@ -148,20 +148,40 @@ void Player::Animation() {
 	switch (curState)
 	{
 	case Player::IDLE:
+		// index controll
 		if (preState != curState) animationIndex = 0;
 		if (animationIndex > IDLE_SIZE - 1) animationIndex = 0;
-		RenderManager::Get().DrawImage(idleFrames_R[animationIndex], position.x, position.y);
+
+		// draw image
+		if(playerWayState == RIGHT || playerWayState == UP || playerWayState == NONE)
+			RenderManager::Get().DrawImage(idleFrames_R[animationIndex], position.x, position.y);
+		else
+			RenderManager::Get().DrawImage(idleFrames_L[animationIndex], position.x, position.y);
 		break;
 
 	case Player::WALK:
+		// index controll
 		if (preState != curState) animationIndex = 0;
 		if (animationIndex > WALK_SIZE - 1) animationIndex = 0;
-		RenderManager::Get().DrawImage(walkFrames_R[animationIndex], position.x, position.y);
+
+		// draw image
+		if (playerWayState == RIGHT || playerWayState == UP || playerWayState == NONE)
+			RenderManager::Get().DrawImage(walkFrames_R[animationIndex], position.x, position.y);
+		else
+			RenderManager::Get().DrawImage(walkFrames_L[animationIndex], position.x, position.y);
 		break;
 
 	case Player::ATTACK:
+		// index controll
 		if (preState != curState) animationIndex = 0;
-		RenderManager::Get().DrawImage(attackFrames_L[animationIndex], position.x, position.y);
+
+		// draw image
+		if (playerWayState == RIGHT || playerWayState == UP || playerWayState == NONE)
+			RenderManager::Get().DrawImage(attackFrames_R[animationIndex], position.x, position.y);
+		else
+			RenderManager::Get().DrawImage(attackFrames_L[animationIndex], position.x, position.y);
+
+		// นÝบน X
 		if (animationIndex == ATTACK_SIZE - 1) curState = IDLE;
 		break;
 
