@@ -24,7 +24,6 @@ class Enemy : public Object {
 	int animationIndex = 0;
 	static const int IDLE_SIZE = 4;
 	Bitmap* idleFrames[IDLE_SIZE];
-	Bitmap* idleFrames_L[IDLE_SIZE];
 
 	// cycle, timer
 	float animationCycle = 0.2f;

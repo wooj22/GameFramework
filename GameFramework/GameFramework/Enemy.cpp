@@ -5,7 +5,7 @@ void Enemy::Start() {
 	float x, y;
 	x = rand() % 1900;
 	y = rand() % 1000;
-	SetPosition(Vector2(x, y));
+	SetPosition(Vector2(900, 400));
 }
 
 void Enemy::Update() {
@@ -13,7 +13,7 @@ void Enemy::Update() {
 }
 
 void Enemy::Render() {
-	//Animation();
+	Animation();
 }
 
 /*-----------------------------------------------*/
@@ -37,6 +37,9 @@ void Enemy::SaveScale() {
 	this->height = idleFrames[0]->GetHeight();
 	this->h_width = this->width / 2;
 	this->h_height = this->height / 2;
+
+	string str = to_string(width);
+	OutputDebugStringA(str.c_str());
 }
 
 void Enemy::SetPosition(Vector2 pos) {
@@ -54,6 +57,10 @@ void Enemy::UpdateTimer() {
 }
 
 void Enemy::Animation() {
+	// index controll
+	if (animationIndex >= IDLE_SIZE) animationIndex = 0;
+
+	// draw image
 	RenderManager::Get().DrawImage(idleFrames[animationIndex],
 		position.x - h_width, position.y - h_height);
 }

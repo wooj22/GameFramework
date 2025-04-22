@@ -171,7 +171,7 @@ void Player::Animation() {
 	case Player::IDLE:
 		// index controll
 		if (preState != curState) animationIndex = 0;
-		if (animationIndex > IDLE_SIZE - 1) animationIndex = 0;
+		if (animationIndex >= IDLE_SIZE) animationIndex = 0;
 
 		// draw image
 		if(wayState == W_RIGHT)
@@ -185,7 +185,7 @@ void Player::Animation() {
 	case Player::WALK:
 		// index controll
 		if (preState != curState) animationIndex = 0;
-		if (animationIndex > WALK_SIZE - 1) animationIndex = 0;
+		if (animationIndex >= WALK_SIZE) animationIndex = 0;
 
 		// draw image
 		if (wayState == W_RIGHT)

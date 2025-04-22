@@ -50,7 +50,7 @@ private:
 	// cycle, timer
 	float moveCycle = 0.1f;
 	float moveTimer = 0.0f;
-	float animationCycle = 0.1f;
+	float animationCycle = 0.15f;
 	float animationTimer = 0.0f;
 
 	// functions
