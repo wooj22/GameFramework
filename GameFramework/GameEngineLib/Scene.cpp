@@ -11,11 +11,11 @@ void Scene::Clear()
 	}
 	objectList.clear();
 
-	for (auto& object : deletePendingObjectList)
+	/*for (auto& object : deletePendingObjectList)
 	{
 		delete object;
 	}
-	deletePendingObjectList.clear();
+	deletePendingObjectList.clear();*/
 }
 
 /// 씬에 등록된 모든 오브젝트 start 호출

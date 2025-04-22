@@ -5,13 +5,15 @@
 #include "GameManager.h"
 
 class Player :public Object {
-private:
+public:
 	// transform
 	Vector2 position;
 	float width;
 	float height;
 	float h_width;
 	float h_height;
+
+private:
 
 	// stat
 	float speed = 15;
@@ -57,7 +59,6 @@ private:
 	void LoadImages();
 	void FilpImages();
 	void SaveScale();
-	void SetPosition(Vector2 pos);
 	void UpdateTimer();
 	void StateUpdate();
 	void Move();
@@ -71,6 +72,7 @@ public:
 	void Update() override;	 // scene manager called
 	void Render() override;	 // scene manager called
 
+	void SetPosition(Vector2 pos);
 	bool isAABBCollision(Vector2 e_pos, float eh_width, float eh_height);
 	int GetAttackEnemyCount() { return attackEnemyCount; }
 };

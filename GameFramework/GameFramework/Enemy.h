@@ -5,6 +5,7 @@
 #include "GameManager.h"
 
 class Enemy : public Object {
+public:
 	// transform
 	Vector2 position;
 	float width;
@@ -12,6 +13,7 @@ class Enemy : public Object {
 	float h_width;
 	float h_height;
 
+private:
 	// window
 	int w_width = 1920;
 	int w_height = 1080;
@@ -32,17 +34,17 @@ class Enemy : public Object {
 	// functions
 	void LoadImages();
 	void SaveScale();
-	void SetPosition(Vector2 pos);
 	void UpdateTimer();
 	void Animation();
 
 public:
 	Enemy();
-	~Enemy() override = default;
+	~Enemy() override { OutputDebugStringA("Enemy Die\n"); }
 
 	void Start() override;   // scene manager called
 	void Update() override;	 // scene manager called
 	void Render() override;	 // scene manager called
 
+	void SetPosition(Vector2 pos);
 	bool isAABBCollision(Vector2 e_pos, float eh_width, float eh_height);
 };

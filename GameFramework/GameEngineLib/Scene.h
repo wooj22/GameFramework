@@ -14,7 +14,7 @@ class Scene
 {
 private:
 	vector<Object*> objectList;				    // 씬에 등록된 object list
-	vector<Object*> deletePendingObjectList;	// 삭제 보류중인 object list
+	//vector<Object*> deletePendingObjectList;	// 삭제 보류중인 object list
 
 public:
 	Scene() = default;
@@ -26,6 +26,13 @@ public:
 		T* pObject = new T();
 		objectList.push_back(pObject);
 		return pObject;
+	}
+
+	template<typename T>
+	void DeleteObject(T object)
+	{
+		auto it = find(objectList.begin(), objectList.end(), object);
+		objectList.erase(it);	
 	}
 
 	void Clear();
