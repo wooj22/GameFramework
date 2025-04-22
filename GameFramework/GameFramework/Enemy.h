@@ -4,10 +4,7 @@
 #include "../GameEngineLib/framework.h"
 #include "GameManager.h"
 
-// animations frame size
-const int IDLE_SIZE = 4;
-
-class Enemy :public Object {
+class Enemy : public Object {
 	// transform
 	Vector2 position;
 	float width;
@@ -25,6 +22,7 @@ class Enemy :public Object {
 
 	// animations
 	int animationIndex = 0;
+	static const int IDLE_SIZE = 4;
 	Bitmap* idleFrames[IDLE_SIZE];
 	Bitmap* idleFrames_L[IDLE_SIZE];
 

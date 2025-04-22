@@ -13,7 +13,7 @@ void Enemy::Update() {
 }
 
 void Enemy::Render() {
-	Animation();
+	//Animation();
 }
 
 /*-----------------------------------------------*/

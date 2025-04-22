@@ -94,22 +94,24 @@ void Player::StateUpdate() {
 		if (InputManager::Get().IsKeyDown(VK_LEFT)) {
 			preState = curState;
 			curState = WALK;
-			wayState = LEFT;
+			moveState = LEFT;
+			wayState = W_LEFT;
 		}
 		if (InputManager::Get().IsKeyDown(VK_RIGHT)) {
 			preState = curState;
 			curState = WALK;
-			wayState = RIGHT;
+			moveState = RIGHT;
+			wayState = W_RIGHT;
 		}
 		if (InputManager::Get().IsKeyDown(VK_UP)) {
 			preState = curState;
 			curState = WALK;
-			wayState = UP;
+			moveState = UP;
 		}
 		if (InputManager::Get().IsKeyDown(VK_DOWN)) {
 			preState = curState;
 			curState = WALK;
-			wayState = DOWN;
+			moveState = DOWN;
 		}
 	}
 	
@@ -140,7 +142,7 @@ void Player::StateUpdate() {
 /// Player move
 void Player::Move() {
 	if (moveTimer > moveCycle && curState == WALK) {
-		switch (wayState)
+		switch (moveState)
 		{
 		case Player::LEFT:
 			this->position.x -= speed;
@@ -172,7 +174,7 @@ void Player::Animation() {
 		if (animationIndex > IDLE_SIZE - 1) animationIndex = 0;
 
 		// draw image
-		if(wayState == RIGHT || wayState == UP || wayState == NONE)
+		if(wayState == W_RIGHT)
 			RenderManager::Get().DrawImage(idleFrames_R[animationIndex], 
 				position.x - h_width, position.y - h_height);
 		else
@@ -186,7 +188,7 @@ void Player::Animation() {
 		if (animationIndex > WALK_SIZE - 1) animationIndex = 0;
 
 		// draw image
-		if (wayState == RIGHT || wayState == UP || wayState == NONE)
+		if (wayState == W_RIGHT)
 			RenderManager::Get().DrawImage(walkFrames_R[animationIndex],
 				position.x - h_width, position.y - h_height);
 		else
@@ -199,7 +201,7 @@ void Player::Animation() {
 		if (preState != curState) animationIndex = 0;
 
 		// draw image
-		if (wayState == RIGHT || wayState == UP || wayState == NONE)
+		if (wayState == W_RIGHT)
 			RenderManager::Get().DrawImage(attackFrames_R[animationIndex],
 				position.x - h_width, position.y - h_height);
 		else

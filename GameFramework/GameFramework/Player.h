@@ -4,11 +4,6 @@
 #include "../GameEngineLib/framework.h"
 #include "GameManager.h"
 
-// animations frame size
-const int IDLE_SIZE = 4;
-const int WALK_SIZE = 6;
-const int ATTACK_SIZE = 8;
-
 class Player :public Object {
 private:
 	// transform
@@ -30,14 +25,21 @@ private:
 
 	// state
 	enum PlayerState { IDLE, WALK, ATTACK };
-	enum PlayerWayState { LEFT, RIGHT, UP, DOWN, NONE };
+	enum PlayerMoveState { LEFT, RIGHT, UP, DOWN, NONE };
+	enum PlayerWayState { W_LEFT, W_RIGHT };
 
 	PlayerState curState = IDLE;
 	PlayerState preState = IDLE;
-	PlayerWayState wayState = NONE;
+	PlayerMoveState moveState = NONE;
+	PlayerWayState wayState = W_RIGHT;
 
 	// animations
 	int animationIndex = 0;
+
+	static const int IDLE_SIZE = 4;
+	static const int WALK_SIZE = 6;
+	static const int ATTACK_SIZE = 8;
+
 	Bitmap* idleFrames_R[IDLE_SIZE];
 	Bitmap* idleFrames_L[IDLE_SIZE];
 	Bitmap* walkFrames_R[WALK_SIZE];

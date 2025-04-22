@@ -1,11 +1,13 @@
 #include "PlayScene.h"
 #include "Player.h"
+#include "Enemy.h"
 #include "../GameEngineLib/framework.h"
 
 /// Start
 void PlayScene::Start() {
 	OutputDebugStringA("PlayScene Start\n");
 	Player* player = (Player*)CreateObject<Player>();
+	Enemy* enemy = (Enemy*)CreateObject<Enemy>();
 
 	__super::Start();
 }
