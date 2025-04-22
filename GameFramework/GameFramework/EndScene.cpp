@@ -20,7 +20,7 @@ void EndScene::Update() {
 /// Render
 void EndScene::Render() {
 	__super::Render();
-
+	RenderManager::Get().DrawTextToWindow(L"[End Scene] Pressed Spacebar >> Exit", 50, 50);
 }
 
 /// Exit

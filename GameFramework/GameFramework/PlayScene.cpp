@@ -54,11 +54,13 @@ void PlayScene::Update() {
 /// Render
 void PlayScene::Render() {
 	__super::Render();
+	RenderManager::Get().DrawTextToWindow(L"[Play Scene] 10초 뒤 자동으로 넘어갑니다", 50, 50);
 }
 
 /// Exit
 void PlayScene::Exit() {
-	OutputDebugStringA(("KillCount: " + to_string(player->GetKillCount()) + "\n").c_str());
 	OutputDebugStringA("PlayScene Exit\n");
+	//GameManager::playerKillCount = player->GetKillCount();
+
 	__super::Exit();
 }

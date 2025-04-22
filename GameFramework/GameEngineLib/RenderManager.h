@@ -33,6 +33,7 @@ public:
 	void FilpImage(Bitmap*& bitmap);
 	void DrawBackground();
 	void DrawImage(Bitmap* bitmap, int posX, int posY);
+	void DrawTextToWindow(const wchar_t* text, int posX, int posY);
 	void DrawBackToFront();
 };
 

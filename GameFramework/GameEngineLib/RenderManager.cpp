@@ -48,6 +48,13 @@ void RenderManager::DrawImage(Bitmap* bitmap, int posX, int posY) {
 	backBufferGraphics->DrawImage(bitmap, posX, posY);
 }
 
+// Text Draw
+void RenderManager::DrawTextToWindow(const wchar_t* text, int posX, int posY) {
+	SetBkMode(backBufferDC, TRANSPARENT);
+	SetTextColor(backBufferDC, RGB(255, 255, 255));
+	TextOutW(backBufferDC, posX, posY, text, wcslen(text));
+}
+
 /// Back -> Front copy
 void RenderManager::DrawBackToFront() {
 	BitBlt(frontBufferDC, 0, 0, width, height, backBufferDC, 0, 0, SRCCOPY);
