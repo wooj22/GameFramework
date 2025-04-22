@@ -56,6 +56,8 @@ private:
 	void FilpImages();
 	void SaveScale();
 	void SetPosition(Vector2 pos);
+	void UpdateTimer();
+	void StateUpdate();
 	void Move();
 	void Animation();
 
@@ -67,6 +69,6 @@ public:
 	void Update() override;	 // scene manager called
 	void Render() override;	 // scene manager called
 
-	bool isAABBCollision(Vector2 pos, float h_width, float h_height);
+	bool isAABBCollision(Vector2 e_pos, float eh_width, float eh_height);
 	int GetAttackEnemyCount() { return attackEnemyCount; }
 };
