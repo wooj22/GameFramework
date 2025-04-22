@@ -37,9 +37,6 @@ void Enemy::SaveScale() {
 	this->height = idleFrames[0]->GetHeight();
 	this->h_width = this->width / 2;
 	this->h_height = this->height / 2;
-
-	string str = to_string(width);
-	OutputDebugStringA(str.c_str());
 }
 
 void Enemy::SetPosition(Vector2 pos) {

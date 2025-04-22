@@ -6,6 +6,7 @@
 class GameManager : public WinGameApp
 {
 public:
+	int playerKillCount = 0;
 	enum sceneName { MENU, PLAY, END };
 
 	GameManager(int inputWidth = 1920, int inputHeight = 1080) : 

@@ -14,16 +14,15 @@ public:
 	float h_height;
 
 private:
+	// window
+	int w_width = 1920;
+	int w_height = 1080;
 
 	// stat
 	float speed = 15;
 
 	// game stat
-	int attackEnemyCount = 0;
-
-	// window
-	int w_width = 1920;
-	int w_height = 1080;
+	int killCount = 0;
 
 	// state
 	enum PlayerState { IDLE, WALK, ATTACK };
@@ -74,5 +73,6 @@ public:
 
 	void SetPosition(Vector2 pos);
 	bool isAABBCollision(Vector2 e_pos, float eh_width, float eh_height);
-	int GetAttackEnemyCount() { return attackEnemyCount; }
+	void Kill() { killCount++; }
+	int GetKillCount() { return killCount; }
 };

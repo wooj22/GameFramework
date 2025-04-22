@@ -12,7 +12,7 @@ void GameManager::Init() {
 	SceneManager::Get().CreateScene<PlayScene>();
 	SceneManager::Get().CreateScene<EndScene>();
 	SceneManager::Get().SetCurrentScene(MENU);
-	SceneManager::Get().GetCurrentScene()->Start();
+	SceneManager::Get().Init();
 }
 
 /// Game Release

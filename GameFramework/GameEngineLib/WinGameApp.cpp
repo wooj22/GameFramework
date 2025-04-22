@@ -120,7 +120,6 @@ void WinGameApp::Init()
 	timeManager.Init();
 	soundManager.Init();
 	renderManager.Init(hWnd, width, height);
-	sceneManager.Init();
 }
 
 /// Update

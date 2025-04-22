@@ -6,7 +6,7 @@
 // 과제용
 Player* player;
 vector<Enemy*> enemyList;
-float sceneChangeTime = 30.0f;
+float sceneChangeTime = 10.0f;
 float sceneChangeTimer = 0.0f;
 
 /// Start
@@ -29,13 +29,14 @@ void PlayScene::Update() {
 	for (auto enemy = enemyList.begin(); enemy != enemyList.end(); ) {
 		if (player->isAABBCollision((*enemy)->position, (*enemy)->h_width, (*enemy)->h_height)) {
 			// enemy 제거
-			OutputDebugStringA("AABB Collision!\n");
 			// 1. 제거할 enemy를 scene의 objectList에서 제거한다.
 			DeleteObject(*enemy);
 			
 			// 2. enemy를 delete한다.
 			delete (*enemy);
 			enemy = enemyList.erase(enemy);
+
+			player->Kill();
 		}
 		else {
 			++enemy;
@@ -57,7 +58,7 @@ void PlayScene::Render() {
 
 /// Exit
 void PlayScene::Exit() {
-	__super::Exit();
-
+	OutputDebugStringA(("KillCount: " + to_string(player->GetKillCount()) + "\n").c_str());
 	OutputDebugStringA("PlayScene Exit\n");
+	__super::Exit();
 }

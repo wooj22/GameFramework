@@ -39,7 +39,7 @@ private:
 
 public:
 	Enemy();
-	~Enemy() override { OutputDebugStringA("Enemy Die\n"); }
+	~Enemy() override = default;
 
 	void Start() override;   // scene manager called
 	void Update() override;	 // scene manager called
