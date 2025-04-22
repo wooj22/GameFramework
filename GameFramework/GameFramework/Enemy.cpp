@@ -33,8 +33,8 @@ void Enemy::LoadImages() {
 }
 
 void Enemy::SaveScale() {
-	this->width = idleFrames[0]->GetWidth();
-	this->height = idleFrames[0]->GetHeight();
+	this->width = idleFrames[0]->GetWidth()/2.5;
+	this->height = idleFrames[0]->GetHeight()/2;
 	this->h_width = this->width / 2;
 	this->h_height = this->height / 2;
 }

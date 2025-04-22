@@ -70,8 +70,8 @@ void Player::FilpImages() {
 
 /// Save width & height
 void Player::SaveScale() {
-	this->width = attackFrames_L[0]->GetWidth();
-	this->height = attackFrames_L[0]->GetHeight();
+	this->width = idleFrames_L[0]->GetWidth()/2.5;
+	this->height = idleFrames_L[0]->GetHeight()/2;
 	this->h_width = this->width/2;
 	this->h_height = this->height/2;
 }
