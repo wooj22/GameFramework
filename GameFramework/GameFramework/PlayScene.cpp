@@ -1,6 +1,7 @@
 #include "PlayScene.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "GameData.h"
 #include "../GameEngineLib/framework.h"
 
 // 과제용
@@ -54,13 +55,13 @@ void PlayScene::Update() {
 /// Render
 void PlayScene::Render() {
 	__super::Render();
-	RenderManager::Get().DrawTextToWindow(L"[Play Scene] 10초 뒤 자동으로 넘어갑니다", 50, 50);
+	RenderManager::Get().DrawTextW(L"[Play Scene] 10초 뒤 자동으로 넘어갑니다", 50, 50);
 }
 
 /// Exit
 void PlayScene::Exit() {
 	OutputDebugStringA("PlayScene Exit\n");
-	//GameManager::playerKillCount = player->GetKillCount();
+	GameData::Get().playerKillCount = player->GetKillCount();
 
 	__super::Exit();
 }

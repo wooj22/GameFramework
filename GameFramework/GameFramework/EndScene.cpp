@@ -1,5 +1,6 @@
 #include "EndScene.h"
 #include "GameManager.h"
+#include "GameData.h"
 #include "../GameEngineLib/framework.h"
 
 /// Start
@@ -20,7 +21,8 @@ void EndScene::Update() {
 /// Render
 void EndScene::Render() {
 	__super::Render();
-	RenderManager::Get().DrawTextToWindow(L"[End Scene] Pressed Spacebar >> Exit", 50, 50);
+	RenderManager::Get().DrawTextW(L"[End Scene] Pressed Spacebar >> Exit", 50, 50);
+	RenderManager::Get().DrawTextS("Player Kill Count : " + to_string(GameData::Get().playerKillCount), 50, 100);
 }
 
 /// Exit

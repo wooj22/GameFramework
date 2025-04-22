@@ -2,7 +2,8 @@
 #include "RenderManager.h"
 
 /// Renderer Initialize
-void RenderManager::Init(HWND hwnd, int width, int height) {
+void RenderManager::Init(HWND hwnd, int width, int height) 
+{
 	// 윈도우 핸들 초기화
 	this->hwnd = hwnd;
 	this->width = width;
@@ -21,12 +22,14 @@ void RenderManager::Init(HWND hwnd, int width, int height) {
 }
 
 /// Load Image
-void RenderManager::LoadImageFile(Bitmap*& bitmap, wchar_t* filePath) {
+void RenderManager::LoadImageFile(Bitmap*& bitmap, wchar_t* filePath) 
+{
 	bitmap = new Bitmap(filePath);
 }
 
 /// Copy Image
-void RenderManager::CopyImage(Bitmap*& bitmapCopy, Bitmap*& bitmapOrigin) {
+void RenderManager::CopyImage(Bitmap*& bitmapCopy, Bitmap*& bitmapOrigin) 
+{
 	bitmapCopy = bitmapOrigin->Clone(0, 0,
 		bitmapOrigin->GetWidth(),
 		bitmapOrigin->GetHeight(),
@@ -34,25 +37,44 @@ void RenderManager::CopyImage(Bitmap*& bitmapCopy, Bitmap*& bitmapOrigin) {
 }
 
 /// Filp Image
-void RenderManager::FilpImage(Bitmap*& bitmap) {
+void RenderManager::FilpImage(Bitmap*& bitmap) 
+{
 	if(bitmap)	bitmap->RotateFlip(RotateNoneFlipX);
 }
 
 /// Backgrond Draw
-void RenderManager::DrawBackground() {
+void RenderManager::DrawBackground() 
+{
 	PatBlt(backBufferDC, 0, 0, width, height, BLACKNESS);
 }
 
 /// Image Draw
-void RenderManager::DrawImage(Bitmap* bitmap, int posX, int posY) {
+void RenderManager::DrawImage(Bitmap* bitmap, int posX, int posY) 
+{
 	backBufferGraphics->DrawImage(bitmap, posX, posY);
 }
 
-// Text Draw
-void RenderManager::DrawTextToWindow(const wchar_t* text, int posX, int posY) {
+// Text C Draw
+void RenderManager::DrawTextC(const char* text, int posX, int posY)
+{
+	SetBkMode(backBufferDC, TRANSPARENT);
+	SetTextColor(backBufferDC, RGB(255, 255, 255));
+	TextOutA(backBufferDC, posX, posY, text, static_cast<int>(strlen(text)));
+}
+
+// Text W Draw
+void RenderManager::DrawTextW(const wchar_t* text, int posX, int posY) 
+{
 	SetBkMode(backBufferDC, TRANSPARENT);
 	SetTextColor(backBufferDC, RGB(255, 255, 255));
 	TextOutW(backBufferDC, posX, posY, text, wcslen(text));
+}
+
+// Text S Draw
+void RenderManager::DrawTextS(const std::string& text, int posX, int posY) {
+	SetBkMode(backBufferDC, TRANSPARENT);
+	SetTextColor(backBufferDC, RGB(255, 255, 255));
+	TextOutA(backBufferDC, posX, posY, text.c_str(), static_cast<int>(text.length()));
 }
 
 /// Back -> Front copy

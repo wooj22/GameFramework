@@ -2,7 +2,9 @@
 #include "gdiplus.h"
 #pragma comment(lib, "gdiplus.lib")
 #include "Singleton.h"
+#include "framework.h"
 using namespace Gdiplus;
+using namespace std;
 
 class RenderManager : public Singleton<RenderManager>
 {
@@ -33,7 +35,9 @@ public:
 	void FilpImage(Bitmap*& bitmap);
 	void DrawBackground();
 	void DrawImage(Bitmap* bitmap, int posX, int posY);
-	void DrawTextToWindow(const wchar_t* text, int posX, int posY);
+	void DrawTextC(const char* text, int posX, int posY);
+	void DrawTextW(const wchar_t* text, int posX, int posY);
+	void DrawTextS(const string& text, int posX, int posY);
 	void DrawBackToFront();
 };
 
