@@ -51,6 +51,14 @@ private:
 	float animationCycle = 0.1f;
 	float animationTimer = 0.0f;
 
+	// functions
+	void LoadImages();
+	void FilpImages();
+	void SaveScale();
+	void SetPosition(Vector2 pos);
+	void Move();
+	void Animation();
+
 public:
 	Player();
 	~Player() override = default;
@@ -58,15 +66,6 @@ public:
 	void Start() override;   // scene manager called
 	void Update() override;	 // scene manager called
 	void Render() override;	 // scene manager called
-
-	void LoadImages();
-	void FilpImages();
-	void SaveScale();
-	void SetPosition(Vector2 pos);
-	void UpdateTimer();
-	void StateUpdate();
-	void Move();
-	void Animation();
 
 	bool isAABBCollision(Vector2 pos, float h_width, float h_height);
 	int GetAttackEnemyCount() { return attackEnemyCount; }
