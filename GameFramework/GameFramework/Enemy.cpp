@@ -3,9 +3,9 @@
 void Enemy::Start() {
 	// 랜덤한 위치 지정
 	float x, y;
-	x = rand() % 1900;
-	y = rand() % 1000;
-	SetPosition(Vector2(900, 400));
+	x = rand() % 1920;
+	y = rand() % 1080;
+	SetPosition(Vector2(x, y));
 }
 
 void Enemy::Update() {
@@ -27,7 +27,7 @@ void Enemy::LoadImages() {
 
 	// idle
 	for (int i = 0; i < IDLE_SIZE; ++i) {
-		swprintf_s(filePath, L"../Resource/EnemyAnimation/Dron_Idle_%d.png", i + 1);
+		swprintf_s(filePath, L"../Resource/EnemyAnimation/idle-%d.png", i + 1);
 		RenderManager::Get().LoadImageFile(idleFrames[i], filePath);
 	}
 }

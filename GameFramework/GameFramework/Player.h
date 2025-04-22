@@ -14,7 +14,7 @@ private:
 	float h_height;
 
 	// stat
-	float speed = 10;
+	float speed = 15;
 
 	// game stat
 	int attackEnemyCount = 0;
