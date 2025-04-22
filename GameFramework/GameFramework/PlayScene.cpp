@@ -4,7 +4,7 @@
 #include "GameData.h"
 #include "../GameEngineLib/framework.h"
 
-// 과제용
+/* 과제용 */
 Player* player;
 vector<Enemy*> enemyList;
 float sceneChangeTime = 10.0f;
@@ -29,13 +29,10 @@ void PlayScene::Update() {
 	// collision cheak
 	for (auto enemy = enemyList.begin(); enemy != enemyList.end(); ) {
 		if (player->isAABBCollision((*enemy)->position, (*enemy)->h_width, (*enemy)->h_height)) {
-			// enemy 제거
-			// 1. 제거할 enemy를 scene의 objectList에서 제거한다.
-			DeleteObject(*enemy);
-			
-			// 2. enemy를 delete한다.
-			delete (*enemy);
-			enemy = enemyList.erase(enemy);
+			// enemy delete
+			delete (*enemy);				// enemy delete
+			DeleteObject(*enemy);			// objectList pointer erase
+			enemy = enemyList.erase(enemy); // enemyList pointer erase
 
 			player->Kill();
 		}
@@ -55,7 +52,8 @@ void PlayScene::Update() {
 /// Render
 void PlayScene::Render() {
 	__super::Render();
-	RenderManager::Get().DrawTextW(L"[Play Scene] 10초 뒤 자동으로 넘어갑니다", 50, 50);
+	RenderManager::Get().DrawTextS("[Play Scene] " + to_string((int)(sceneChangeTime - sceneChangeTimer)) + 
+		"초뒤 자동으로 넘어갑니다.", 50, 50);
 }
 
 /// Exit

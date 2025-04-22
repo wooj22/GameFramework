@@ -4,6 +4,8 @@
 #include "../GameEngineLib/framework.h"
 #include "GameManager.h"
 
+// TODO :: Chracter 클래스 만들어서 상속 -> 재사용
+
 class Player :public Object {
 public:
 	// transform
