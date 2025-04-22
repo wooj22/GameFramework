@@ -1,8 +1,7 @@
 #include "Player.h"
 
 void Player::Start() {
-	LoadImages();
-	FilpImages();
+	SetPosition(Vector2(900, 400));
 }
 
 void Player::Update() {
@@ -18,6 +17,13 @@ void Player::Render() {
 
 
 /* -------------------------------------------------------------------------- */
+/// 생성자 
+Player::Player() {
+	LoadImages();
+	FilpImages();
+	SaveScale();
+}
+
 /// Player animation images load
 void Player::LoadImages() {
 	wchar_t filePath[256];
@@ -62,6 +68,19 @@ void Player::FilpImages() {
 	}
 }
 
+/// Save width & height
+void Player::SaveScale() {
+	this->width = attackFrames_L[0]->GetWidth();
+	this->height = attackFrames_L[0]->GetHeight();
+	this->h_width = this->width/2;
+	this->h_height = this->height/2;
+}
+
+/// Set position
+void Player::SetPosition(Vector2 pos) {
+	this->position = pos;
+}
+
 /// Update Timer
 void Player::UpdateTimer() {
 	moveTimer += TimeManager::Get().GetDeltaTime();
@@ -75,22 +94,22 @@ void Player::StateUpdate() {
 		if (InputManager::Get().IsKeyDown(VK_LEFT)) {
 			preState = curState;
 			curState = WALK;
-			playerWayState = LEFT;
+			wayState = LEFT;
 		}
 		if (InputManager::Get().IsKeyDown(VK_RIGHT)) {
 			preState = curState;
 			curState = WALK;
-			playerWayState = RIGHT;
+			wayState = RIGHT;
 		}
 		if (InputManager::Get().IsKeyDown(VK_UP)) {
 			preState = curState;
 			curState = WALK;
-			playerWayState = UP;
+			wayState = UP;
 		}
 		if (InputManager::Get().IsKeyDown(VK_DOWN)) {
 			preState = curState;
 			curState = WALK;
-			playerWayState = DOWN;
+			wayState = DOWN;
 		}
 	}
 	
@@ -121,7 +140,7 @@ void Player::StateUpdate() {
 /// Player move
 void Player::Move() {
 	if (moveTimer > moveCycle && curState == WALK) {
-		switch (playerWayState)
+		switch (wayState)
 		{
 		case Player::LEFT:
 			this->position.x -= speed;
@@ -153,10 +172,12 @@ void Player::Animation() {
 		if (animationIndex > IDLE_SIZE - 1) animationIndex = 0;
 
 		// draw image
-		if(playerWayState == RIGHT || playerWayState == UP || playerWayState == NONE)
-			RenderManager::Get().DrawImage(idleFrames_R[animationIndex], position.x, position.y);
+		if(wayState == RIGHT || wayState == UP || wayState == NONE)
+			RenderManager::Get().DrawImage(idleFrames_R[animationIndex], 
+				position.x - h_width, position.y - h_height);
 		else
-			RenderManager::Get().DrawImage(idleFrames_L[animationIndex], position.x, position.y);
+			RenderManager::Get().DrawImage(idleFrames_L[animationIndex],
+				position.x - h_width, position.y - h_height);
 		break;
 
 	case Player::WALK:
@@ -165,10 +186,12 @@ void Player::Animation() {
 		if (animationIndex > WALK_SIZE - 1) animationIndex = 0;
 
 		// draw image
-		if (playerWayState == RIGHT || playerWayState == UP || playerWayState == NONE)
-			RenderManager::Get().DrawImage(walkFrames_R[animationIndex], position.x, position.y);
+		if (wayState == RIGHT || wayState == UP || wayState == NONE)
+			RenderManager::Get().DrawImage(walkFrames_R[animationIndex],
+				position.x - h_width, position.y - h_height);
 		else
-			RenderManager::Get().DrawImage(walkFrames_L[animationIndex], position.x, position.y);
+			RenderManager::Get().DrawImage(walkFrames_L[animationIndex],
+				position.x - h_width, position.y - h_height);
 		break;
 
 	case Player::ATTACK:
@@ -176,10 +199,12 @@ void Player::Animation() {
 		if (preState != curState) animationIndex = 0;
 
 		// draw image
-		if (playerWayState == RIGHT || playerWayState == UP || playerWayState == NONE)
-			RenderManager::Get().DrawImage(attackFrames_R[animationIndex], position.x, position.y);
+		if (wayState == RIGHT || wayState == UP || wayState == NONE)
+			RenderManager::Get().DrawImage(attackFrames_R[animationIndex],
+				position.x - h_width, position.y - h_height);
 		else
-			RenderManager::Get().DrawImage(attackFrames_L[animationIndex], position.x, position.y);
+			RenderManager::Get().DrawImage(attackFrames_L[animationIndex],
+				position.x - h_width, position.y - h_height);
 
 		// 반복 X
 		if (animationIndex == ATTACK_SIZE - 1) curState = IDLE;
@@ -191,6 +216,7 @@ void Player::Animation() {
 }
 
 /// AABB Collision
-bool Player::isCollision(Vector2 pos, int width, int height) {
+bool Player::isCollision(Vector2 pos, float width, float height) {
+	// TODO
 	return false;
 }

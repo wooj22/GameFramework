@@ -13,29 +13,28 @@ class Player :public Object {
 private:
 	// transform
 	Vector2 position;
-	int width = 50;
-	int height = 80;
-	int winWidth = 1920;
-	int winHeight = 1080;
+	float width;
+	float height;
+	float h_width;
+	float h_height;
 
 	// stat
 	float speed = 10;
 
-	// cycle
-	float moveCycle = 0.1f;
-	float animationCycle = 0.1f;
+	// game stat
+	int attackEnemyCount = 0;
 
-	// timer
-	float moveTimer = 0.0f;
-	float animationTimer = 0.0f;
+	// window
+	int winWidth = 1920;
+	int winHeight = 1080;
 
 	// state
 	enum PlayerState { IDLE, WALK, ATTACK };
-	enum PlayerWayState { LEFT, RIGHT,	UP,	DOWN, NONE };
+	enum PlayerWayState { LEFT, RIGHT, UP, DOWN, NONE };
 
 	PlayerState curState = IDLE;
 	PlayerState preState = IDLE;
-	PlayerWayState playerWayState = NONE;
+	PlayerWayState wayState = NONE;
 
 	// animations
 	int animationIndex = 0;
@@ -46,20 +45,29 @@ private:
 	Bitmap* attackFrames_L[ATTACK_SIZE];
 	Bitmap* attackFrames_R[ATTACK_SIZE];
 
+	// cycle, timer
+	float moveCycle = 0.1f;
+	float moveTimer = 0.0f;
+	float animationCycle = 0.1f;
+	float animationTimer = 0.0f;
 
 public:
-	Player() = default;
+	Player();
 	~Player() override = default;
 
-	void Start() override; // scene manager called
+	void Start() override;   // scene manager called
 	void Update() override;	 // scene manager called
-	void Render() override;	 // scene manager called	
+	void Render() override;	 // scene manager called
 
 	void LoadImages();
 	void FilpImages();
+	void SaveScale();
+	void SetPosition(Vector2 pos);
 	void UpdateTimer();
 	void StateUpdate();
 	void Move();
-	bool isCollision(Vector2 pos, int width, int height);
 	void Animation();
+
+	bool isCollision(Vector2 pos, float width, float height);
+	int GetAttackEnemyCount() { return attackEnemyCount; }
 };

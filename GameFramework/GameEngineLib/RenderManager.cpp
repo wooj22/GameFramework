@@ -27,8 +27,6 @@ void RenderManager::LoadImageFile(Bitmap*& bitmap, wchar_t* filePath) {
 
 /// Copy Image
 void RenderManager::CopyImage(Bitmap*& bitmapCopy, Bitmap*& bitmapOrigin) {
-	if (bitmapOrigin == nullptr) return;		// why? GetPixelFormat이 nullptr이라서 추가한건데 이미지 로드 다 잘됨
-
 	bitmapCopy = bitmapOrigin->Clone(0, 0,
 		bitmapOrigin->GetWidth(),
 		bitmapOrigin->GetHeight(),

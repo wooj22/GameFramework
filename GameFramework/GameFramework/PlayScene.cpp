@@ -10,7 +10,7 @@ void PlayScene::Start() {
 	__super::Start();
 }
 
-// 과제용 임시변수
+// 과제용 임시변수 - 플레이씬 10초 유지 후 자동 전환
 float sceneChangeTime = 30.0f;
 float sceneChangeTimer = 0.0f;
 
